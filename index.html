@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zewix Store | Online Shopping Pakistan</title>
+  <meta name="description" content="Zewix Store — electronics, home, kitchen, gaming, lifestyle & more. All categories at affordable prices across Pakistan." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="style.css?v=7" />
+
+</head>
+
+<body class="light-theme">
+  <script>try{if(localStorage.getItem('zewix_theme')==='dark')document.body.classList.remove('light-theme')}catch(e){}</script>
+
+  <!-- ══════════════ HEADER ══════════════ -->
+  <header class="site-header" id="home">
+    <nav class="navbar container">
+      <a class="brand" href="/" aria-label="Zewix Store home">
+        <span class="brand-text">ZEWIX</span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <div class="nav-search-wrap">
+          <input type="text" class="nav-search" id="navSearch" placeholder="Search products..." autocomplete="off" />
+          <span class="nav-search-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+          </span>
+        </div>
+
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+        </button>
+
+        <button class="cart-icon-btn hide-mobile" id="wishlistBtn" aria-label="Wishlist">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+          </svg>
+          <span class="cart-count" id="wishlistCount">0</span>
+        </button>
+
+        <button class="cart-icon-btn hide-mobile" id="cartBtn" aria-label="Cart">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1" />
+            <circle cx="20" cy="21" r="1" />
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+          </svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Open navigation menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Category Bar — auto-built by script.js -->
+    <div class="category-bar" id="categoryBar"></div>
+
+    <!-- Ticker -->
+    <div class="ticker-wrap">
+      <div class="ticker-track">
+        <span class="ticker-item"><span class="ticker-dot"></span> Cash on Delivery available on all orders</span>
+        <span class="ticker-item"><span class="ticker-dot"></span> <span class="ticker-highlight">Free shipping</span>
+          on orders above Rs. 2,000</span>
+        <span class="ticker-item"><span class="ticker-dot"></span> 4-5 working days delivery across Pakistan</span>
+        <span class="ticker-item"><span class="ticker-dot"></span> 7-day easy returns — no questions asked</span>
+        <span class="ticker-item"><span class="ticker-dot"></span> <span class="ticker-highlight">Mega Sale</span> — Up
+          to 50% off on Electronics</span>
+        <span class="ticker-item"><span class="ticker-dot"></span> 100% authentic products guaranteed</span>
+        <span class="ticker-item"><span class="ticker-dot"></span> Cash on Delivery available on all orders</span>
+        <span class="ticker-item"><span class="ticker-dot"></span> <span class="ticker-highlight">Free shipping</span>
+          on orders above Rs. 2,000</span>
+        <span class="ticker-item"><span class="ticker-dot"></span> 4-5 working days delivery across Pakistan</span>
+        <span class="ticker-item"><span class="ticker-dot"></span> 7-day easy returns — no questions asked</span>
+        <span class="ticker-item"><span class="ticker-dot"></span> <span class="ticker-highlight">Mega Sale</span> — Up
+          to 50% off on Electronics</span>
+        <span class="ticker-item"><span class="ticker-dot"></span> 100% authentic products guaranteed</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══════════════ MAIN ══════════════ -->
+  <main>
+
+    <!-- 1. Slider -->
+    <section class="carousel section container" aria-label="Featured categories">
+      <div class="carousel-header">
+        <h2>FEATURED PICKS</h2>
+      </div>
+      <div class="slider" id="slider">
+        <button class="slider-btn prev" id="prevSlide" aria-label="Previous slide">&#8249;</button>
+        <div class="slides-wrapper">
+          <article class="slide active">
+            <img src="https://images.unsplash.com/photo-1606400082777-ef05f3c5cde2?auto=format&fit=crop&w=1200&q=80"
+              alt="AirPods in case" />
+            <div class="slide-content">
+              <h3>AirPods</h3>
+              <p>Crystal-clear audio for your everyday moments.</p>
+            </div>
+          </article>
+          <article class="slide">
+            <img src="https://images.unsplash.com/photo-1579586337278-3befd40fd17a?auto=format&fit=crop&w=1200&q=80"
+              alt="Smart watch on wrist" />
+            <div class="slide-content">
+              <h3>Smart Watch</h3>
+              <p>Performance, style, and smart tracking in one.</p>
+            </div>
+          </article>
+          <article class="slide">
+            <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=1200&q=80"
+              alt="Tech accessories on desk" />
+            <div class="slide-content">
+              <h3>Accessories</h3>
+              <p>Refined accessories that complete your setup.</p>
+            </div>
+          </article>
+        </div>
+        <button class="slider-btn next" id="nextSlide" aria-label="Next slide">&#8250;</button>
+      </div>
+    </section>
+
+    <!-- 2. Mega Sale -->
+    <section class="mega-sale section" id="sale">
+      <div class="container">
+        <div class="sale-header">
+          <div class="sale-title-wrap">
+            <span class="sale-eyebrow">&#128293; Limited Time</span>
+            <h2 class="sale-title">MEGA SALE</h2>
+            <p class="sale-subtitle">Exclusive deals — grab them before they're gone!</p>
+          </div>
+          <div class="sale-badge-big">UP TO<br /><span>300PKR OFF</span></div>
+        </div>
+        <div class="sale-grid" id="saleGrid">
+          <p class="sale-empty" id="saleEmpty">No sale products right now.</p>
+        </div>
+      </div>
+    </section>
+
+
+<!-- ═══ MOST POPULAR SECTION — Mega Sale ke baad add karo ═══ -->
+<section class="scroll-section section" id="mostPopular">
+  <div class="container">
+    <div class="scroll-section-header">
+      <div>
+        <span class="eyebrow">Customers Love These</span>
+        <h2>🔥 Most Popular</h2>
+      </div>
+      <button class="btn btn-outline" id="popularViewAllBtn">View All</button>
+    </div>
+    <div class="products-scroll-row" id="popularRow">
+      <p class="sale-empty" id="popularEmpty">Loading...</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TOP SELLING SECTION ═══ -->
+<section class="scroll-section section" id="topSelling">
+  <div class="container">
+    <div class="scroll-section-header">
+      <div>
+        <span class="eyebrow">Best Sellers</span>
+        <h2>📈 Top Selling</h2>
+      </div>
+      <button class="btn btn-outline" id="topSellingViewAllBtn">View All</button>
+    </div>
+    <div class="products-scroll-row" id="topSellingRow">
+      <p class="sale-empty" id="topSellingEmpty">Loading...</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ALL PRODUCTS SECTION (replace karo old products section) ═══ -->
+<section class="products section" id="products">
+  <div class="container">
+    <h2>All Categories</h2>
+    <div id="productGrid"></div>
+  </div>
+</section>
+
+    <!-- 4. Why Shop With Us -->
+    <section class="features section">
+      <div class="container">
+        <h2>Why Shop With Us</h2>
+        <div class="features-grid">
+          <article class="feature-card"><span>&#128666;</span>
+            <h3>Fast Delivery</h3>
+          </article>
+          <article class="feature-card"><span>&#9989;</span>
+            <h3>Premium Quality</h3>
+          </article>
+          <article class="feature-card"><span>&#128181;</span>
+            <h3>Cash on Delivery</h3>
+          </article>
+          <article class="feature-card"><span>&#128336;</span>
+            <h3>24/7 Support</h3>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Reviews -->
+    <section class="reviews-section section">
+      <div class="container">
+        <div class="reviews-top">
+          <h2>What Our Customers Say</h2>
+          <button class="btn btn-outline see-all-reviews-btn" id="seeAllReviewsBtn">See All Reviews</button>
+        </div>
+        <div class="reviews-ticker-wrap">
+          <div class="reviews-track" id="reviewsTrack">
+            <div class="review-card">
+              <div class="review-avatar">AK</div>
+              <div class="review-body">
+                <div class="review-header"><span class="review-name">Ahmad Khan</span><span
+                    class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+                <p class="review-text">Airpods ki quality bohot achi thi. Delivery bhi 2 din mein ho gayi. Zewix Store
+                  se zaroor dobara khareedunga!</p>
+                <span class="review-date">2 days ago</span>
+              </div>
+            </div>
+            <div class="review-card">
+              <div class="review-avatar">SF</div>
+              <div class="review-body">
+                <div class="review-header"><span class="review-name">Sara Fatima</span><span
+                    class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+                <p class="review-text">Smart Watch Pro bilkul waisi hi thi jesi picture mein thi. Cash on delivery ka
+                  option bhi tha jo bohot convenient tha.</p>
+                <span class="review-date">5 days ago</span>
+              </div>
+            </div>
+            <div class="review-card">
+              <div class="review-avatar">UR</div>
+              <div class="review-body">
+                <div class="review-header"><span class="review-name">Usman Raza</span><span
+                    class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+                <p class="review-text">Power Bank 10000mAh ne meri zindagi aasan kar di. Office mein phone kabhi band
+                  nahi hota ab. Packaging bhi secure thi.</p>
+                <span class="review-date">1 week ago</span>
+              </div>
+            </div>
+            <div class="review-card">
+              <div class="review-avatar">MN</div>
+              <div class="review-body">
+                <div class="review-header"><span class="review-name">Maryam Noor</span><span
+                    class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+                <p class="review-text">Bluetooth Speaker ki sound quality amazing hai. Ghar mein sab ko pasand aaya.
+                  Bohot fast delivery thi Lahore mein.</p>
+                <span class="review-date">1 week ago</span>
+              </div>
+            </div>
+            <div class="review-card">
+              <div class="review-avatar">ZA</div>
+              <div class="review-body">
+                <div class="review-header"><span class="review-name">Zain Ali</span><span
+                    class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+                <p class="review-text">Apple Headphone Max liya tha gift ke liye. Packaging itni achi thi k bina wrap
+                  kiye de diya. Quality se bohot khush hoon.</p>
+                <span class="review-date">2 weeks ago</span>
+              </div>
+            </div>
+            <div class="review-card">
+              <div class="review-avatar">HB</div>
+              <div class="review-body">
+                <div class="review-header"><span class="review-name">Hina Baig</span><span
+                    class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+                <p class="review-text">3D Crystal Lamp bohot pyari hai! Mere room ka look hi badal gaya. Zewix Store
+                  trusted store hai Pakistan mein.</p>
+                <span class="review-date">2 weeks ago</span>
+              </div>
+            </div>
+            <div class="review-card">
+              <div class="review-avatar">FA</div>
+              <div class="review-body">
+                <div class="review-header"><span class="review-name">Farhan Ahmed</span><span
+                    class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span></div>
+                <p class="review-text">A9 Pro Airpods ka sound crystal clear hai. ANC bhi kaam karta hai office noise
+                  mein. Price ke hisaab se best value hai.</p>
+                <span class="review-date">3 weeks ago</span>
+              </div>
+            </div>
+            <div class="review-card">
+              <div class="review-avatar">RA</div>
+              <div class="review-body">
+                <div class="review-header"><span class="review-name">Rimsha Arshad</span><span
+                    class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></div>
+                <p class="review-text">Arctic Air Cooler ne garmi mein jaan bachali! Portable hai toh room se room le
+                  jao. Highly recommend karta hoon!</p>
+                <span class="review-date">1 month ago</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. How to Order -->
+    <section class="how-to-order section">
+      <div class="container">
+        <div class="hto-header">
+          <span class="eyebrow">Simple &amp; Easy</span>
+          <h2>How to Order</h2>
+          <p class="hto-subtitle">3 آسان قدم میں آرڈر کریں</p>
+        </div>
+        <div class="hto-grid">
+          <div class="hto-step">
+            <div class="hto-icon">&#128717;</div>
+            <div class="hto-number">01</div>
+            <h3>Product Choose Karo</h3>
+            <p>Apni pasand ka product select karo aur "Buy Now" press karo</p>
+          </div>
+          <div class="hto-arrow">&#8250;</div>
+          <div class="hto-step">
+            <div class="hto-icon">&#128172;</div>
+            <div class="hto-number">02</div>
+            <h3>WhatsApp Pe Bhejo</h3>
+            <p>Order details automatically WhatsApp pe chali jayengi</p>
+          </div>
+          <div class="hto-arrow">&#8250;</div>
+          <div class="hto-step">
+            <div class="hto-icon">&#128666;</div>
+            <div class="hto-number">03</div>
+            <h3>Delivery Ka Intezaar</h3>
+            <p>4-5 working days mein apke ghar Cash on Delivery ke saath pahunch jayega</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. About -->
+    <section class="about section" id="about">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-text">
+            <span class="eyebrow">Who We Are</span>
+            <h2>Pakistan Ka Trusted <br />Online Store</h2>
+            <p>Zewix Store is a modern ecommerce brand — electronics, home &amp; kitchen, gaming, smart gadgets, studio gear &amp; lifestyle. Har category mein quality products affordable prices par.</p>
+            <p>We are committed to providing a smooth shopping experience, reliable customer support, and fast delivery.
+              Every customer deserves value, quality, and trust with every purchase.</p>
+            <a class="btn btn-primary" href="#products">Shop Now</a>
+          </div>
+          <div class="about-stats">
+            <div class="stat-card"><span class="stat-number">5000+</span><span class="stat-label">Happy Customers</span>
+            </div>
+            <div class="stat-card"><span class="stat-number">100+</span><span class="stat-label">Products
+                Available</span></div>
+            <div class="stat-card"><span class="stat-number">4.9&#9733;</span><span class="stat-label">Average
+                Rating</span></div>
+            <div class="stat-card"><span class="stat-number">4-5 Days</span><span class="stat-label">Working Days
+                Delivery</span></div>
+            <div class="about-values">
+              <div class="value-item"><span>&#9989;</span> 100% Authentic Products</div>
+              <div class="value-item"><span>&#128666;</span> Cash on Delivery</div>
+              <div class="value-item"><span>&#128260;</span> 7-Day Easy Returns</div>
+              <div class="value-item"><span>&#128172;</span> 24/7 WhatsApp Support</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Contact -->
+    <section class="contact section" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-info">
+          <h2>Contact Us</h2>
+          <p><strong>Phone:</strong> 0314 6450255</p>
+          <p><strong>Email:</strong> <a href="mailto:zewixstore@gmail.com">zewixstore@gmail.com</a></p>
+          <a class="btn btn-primary" href="https://wa.me/923146450255" target="_blank"
+            rel="noopener noreferrer">Chat on WhatsApp</a>
+        </div>
+        <form class="contact-form" id="contactForm" novalidate>
+          <input id="customerName" type="text" placeholder="Your Name" required />
+          <input id="customerEmail" type="email" placeholder="Your Email" required />
+          <input id="customerPhone" type="tel" placeholder="Your Phone Number" />
+          <textarea id="customerMessage" placeholder="Your Message" rows="5" required></textarea>
+          <p class="form-status" id="formStatus" aria-live="polite"></p>
+          <div class="contact-actions">
+            <button type="submit" class="btn btn-outline">Send via Email</button>
+            <button type="button" class="btn btn-primary" id="sendWhatsappMessage">Send via WhatsApp</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h3>Zewix Store</h3>
+        <p>All categories. One trusted store.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Social</h4>
+        <div class="social-icons" aria-label="Social links">
+          <a href="https://www.instagram.com/zewixstore.pk/" target="_blank" rel="noopener noreferrer"
+            aria-label="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.8A3.95 3.95 0 0 0 3.8 7.75v8.5a3.95 3.95 0 0 0 3.95 3.95h8.5a3.95 3.95 0 0 0 3.95-3.95v-8.5a3.95 3.95 0 0 0-3.95-3.95h-8.5zm8.95 1.35a1.05 1.05 0 1 1 0 2.1 1.05 1.05 0 0 1 0-2.1zM12 7a5 5 0 1 1 0 10A5 5 0 0 1 12 7zm0 1.8a3.2 3.2 0 1 0 0 6.4 3.2 3.2 0 0 0 0-6.4z" />
+            </svg>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61562987198719" target="_blank" rel="noopener noreferrer"
+            aria-label="Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M13.5 21.5v-8h2.7l.4-3.2h-3.1V8.3c0-.9.3-1.6 1.6-1.6h1.7V3.9c-.3 0-1.4-.1-2.6-.1-2.6 0-4.3 1.6-4.3 4.5v2H7.8v3.2h2.7v8h3z" />
+            </svg>
+          </a>
+          <a href="https://www.tiktok.com/@zewixstore.pk" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M14.2 3h2.6c.2 1.5 1.1 2.7 2.6 3.1v2.7c-1.2-.1-2.4-.5-3.5-1.1v6.5a5.2 5.2 0 1 1-4.5-5.1v2.8a2.5 2.5 0 1 0 1.8 2.4V3z" />
+            </svg>
+          </a>
+          <a href="https://wa.me/923146450255" target="_blank" rel="noopener noreferrer"
+            aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M20.5 11.8A8.5 8.5 0 0 1 7.9 19.2L3 20.5l1.3-4.8a8.5 8.5 0 1 1 16.2-3.9zm-8-5.9a6.3 6.3 0 0 0-5.4 9.5l.3.5-.8 2.8 2.9-.8.5.3a6.3 6.3 0 1 0 2.5-12.3zm3.4 8.1c-.2-.1-1.2-.6-1.4-.6-.2-.1-.3-.1-.5.1l-.6.7c-.1.1-.2.1-.4 0-.2-.1-.9-.3-1.7-1.1-.6-.5-1-1.2-1.1-1.4-.1-.2 0-.3.1-.4l.5-.6.2-.4c.1-.1.1-.3 0-.4l-.6-1.5c-.1-.2-.2-.2-.4-.2h-.3c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.2 1.5 2.3 3.6 3.2 2.1.8 2.1.5 2.5.5.4-.1 1.2-.5 1.4-1 .2-.5.2-.9.1-1-.1-.1-.2-.1-.4-.2z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <p class="copyright">&#169; 2026 Zewix Store</p>
+  </footer>
+
+  <!-- ══════════════ PRODUCT MODAL ══════════════ -->
+  <div class="modal" id="productModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalTitle">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-content">
+      <div class="sheet-handle" aria-hidden="true"></div>
+      <button class="modal-close" id="closeModal" aria-label="Close modal">&#215;</button>
+      <img id="modalImage" src="" alt="Selected product" />
+      <div class="modal-info">
+        <h3 id="modalTitle"></h3>
+        <p id="modalDescription"></p>
+        <div class="feature-badges" id="modalFeatures"></div>
+        <div class="price-stock-row">
+          <p class="modal-price" id="modalPrice"></p>
+        </div>
+        <div class="qty-row">
+          <button class="btn card-cart-btn" id="modalWishlistBtn" aria-label="Add to wishlist">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+            </svg>
+          </button>
+          <label for="quantity">Qty</label>
+          <input id="quantity" type="number" min="1" value="1" />
+          <button class="btn btn-primary" id="whatsappOrderBtn">Buy Now</button>
+          <button class="btn card-cart-btn" id="modalCartBtn" aria-label="Add to cart">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="9" cy="21" r="1" />
+              <circle cx="20" cy="21" r="1" />
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ CART MODAL ══════════════ -->
+  <div class="modal" id="cartModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="cartModalTitle">
+    <div class="modal-backdrop" id="cartModalBackdrop"></div>
+    <div class="cart-modal-content">
+      <div class="sheet-handle" aria-hidden="true"></div>
+      <div class="cart-header">
+        <h3 id="cartModalTitle">Your Cart 🛒</h3>
+        <button class="modal-close" id="closeCartModal" aria-label="Close cart">&#215;</button>
+      </div>
+      <div class="cart-items" id="cartItems">
+        <p class="cart-empty" id="cartEmpty">Your cart is empty</p>
+      </div>
+      <div class="cart-footer" id="cartFooter" style="display:none">
+        <div class="cart-total-row">
+          <span>Total</span>
+          <span class="cart-total-price" id="cartTotalPrice">0 PKR</span>
+        </div>
+        <button class="btn btn-primary cart-whatsapp-btn" id="cartWhatsappBtn">Buy Now via WhatsApp</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ WISHLIST MODAL ══════════════ -->
+  <div class="modal" id="wishlistModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-backdrop" id="wishlistModalBackdrop"></div>
+    <div class="cart-modal-content">
+      <div class="sheet-handle" aria-hidden="true"></div>
+      <div class="cart-header">
+        <h3>My Wishlist ❤️</h3>
+        <button class="modal-close" id="closeWishlistModal" aria-label="Close wishlist">&#215;</button>
+      </div>
+      <div class="cart-items" id="wishlistItems">
+        <p class="cart-empty">Your wishlist is empty</p>
+      </div>
+      <div class="cart-footer" id="wishlistFooter" style="display:none">
+        <div class="cart-total-row">
+          <span>Total Items</span>
+          <span class="cart-total-price" id="wishlistTotalCount">0</span>
+        </div>
+        <button class="btn btn-primary cart-whatsapp-btn" id="wishlistWhatsappBtn">Order All via WhatsApp</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ CHECKOUT / WHATSAPP ORDER MODAL ══════════════ -->
+  <div class="modal" id="checkoutModal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="checkoutTitle">
+    <div class="modal-backdrop" id="checkoutModalBackdrop"></div>
+    <div class="checkout-modal-content">
+      <div class="sheet-handle" aria-hidden="true"></div>
+      <div class="checkout-header">
+        <div>
+          <span class="checkout-eyebrow">Secure Checkout</span>
+          <h3 id="checkoutTitle">Complete Your Order</h3>
+        </div>
+        <button class="modal-close" id="closeCheckoutModal" aria-label="Close checkout">&#215;</button>
+      </div>
+      <div class="checkout-preview" id="checkoutPreview"></div>
+      <div class="checkout-total-row" id="checkoutTotalRow">
+        <span>Order Total</span>
+        <strong id="checkoutTotal">Rs. 0</strong>
+      </div>
+      <form class="checkout-form" id="checkoutForm" novalidate>
+        <p class="checkout-form-label">Delivery Details</p>
+        <input id="coName" type="text" placeholder="Full Name *" required autocomplete="name" />
+        <div class="checkout-phone-row">
+          <input id="coPhone" type="tel" placeholder="WhatsApp Number *" required autocomplete="tel" />
+          <input id="coPhone2" type="tel" placeholder="Alternative Number *" required autocomplete="tel" />
+        </div>
+        <input id="coCity" type="text" placeholder="City *" required />
+        <textarea id="coAddress" placeholder="Full Delivery Address *" rows="3" required></textarea>
+        <p class="checkout-note">💳 Cash on Delivery · 🚚 4-5 Working Days Delivery</p>
+        <p class="checkout-status" id="checkoutStatus" aria-live="polite"></p>
+        <button type="submit" class="btn btn-primary checkout-wa-btn" id="confirmWhatsappOrder">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20.5 11.8A8.5 8.5 0 0 1 7.9 19.2L3 20.5l1.3-4.8a8.5 8.5 0 1 1 16.2-3.9zm-8-5.9a6.3 6.3 0 0 0-5.4 9.5l.3.5-.8 2.8 2.9-.8.5.3a6.3 6.3 0 1 0 2.5-12.3zm3.4 8.1c-.2-.1-1.2-.6-1.4-.6-.2-.1-.3-.1-.5.1l-.6.7c-.1.1-.2.1-.4 0-.2-.1-.9-.3-1.7-1.1-.6-.5-1-1.2-1.1-1.4-.1-.2 0-.3.1-.4l.5-.6.2-.4c.1-.1.1-.3 0-.4l-.6-1.5c-.1-.2-.2-.2-.4-.2h-.3c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.2 1.5 2.3 3.6 3.2 2.1.8 2.1.5 2.5.5.4-.1 1.2-.5 1.4-1 .2-.5.2-.9.1-1-.1-.1-.2-.1-.4-.2z"/>
+          </svg>
+          Send Order on WhatsApp
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ══════════════ REVIEWS MODAL ══════════════ -->
+  <div class="modal" id="reviewsModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-backdrop" id="reviewsModalBackdrop"></div>
+    <div class="reviews-modal-content">
+      <div class="reviews-modal-header">
+        <div>
+          <h3>Customer Reviews</h3>
+          <div class="reviews-overall">
+            <span class="reviews-big-rating">4.9</span>
+            <div>
+              <div class="reviews-big-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <p>Based on 248 reviews</p>
+            </div>
+          </div>
+        </div>
+        <button class="modal-close" id="closeReviewsModal" aria-label="Close reviews">&#215;</button>
+      </div>
+      <div class="reviews-modal-list" id="reviewsModalList"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════ VIEW ALL MODAL ══════════════ -->
+  <div class="modal" id="viewAllModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-backdrop" id="viewAllModalBackdrop"></div>
+    <div class="view-all-modal-content">
+      <div class="sheet-handle" aria-hidden="true"></div>
+      <div class="cart-header">
+        <h3 id="viewAllTitle">All Products</h3>
+        <button class="modal-close" id="closeViewAllModal" aria-label="Close view all">&#215;</button>
+      </div>
+      <div class="view-all-grid" id="viewAllGrid"></div>
+    </div>
+  </div>
+
+  <!-- ══════════════ FLOATING BUTTONS ══════════════ -->
+  <a class="whatsapp-float" href="https://wa.me/923146450255" target="_blank" rel="noopener noreferrer"
+    aria-label="Chat on WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white">
+      <path
+        d="M20.5 11.8A8.5 8.5 0 0 1 7.9 19.2L3 20.5l1.3-4.8a8.5 8.5 0 1 1 16.2-3.9zm-8-5.9a6.3 6.3 0 0 0-5.4 9.5l.3.5-.8 2.8 2.9-.8.5.3a6.3 6.3 0 1 0 2.5-12.3zm3.4 8.1c-.2-.1-1.2-.6-1.4-.6-.2-.1-.3-.1-.5.1l-.6.7c-.1.1-.2.1-.4 0-.2-.1-.9-.3-1.7-1.1-.6-.5-1-1.2-1.1-1.4-.1-.2 0-.3.1-.4l.5-.6.2-.4c.1-.1.1-.3 0-.4l-.6-1.5c-.1-.2-.2-.2-.4-.2h-.3c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.2 1.5 2.3 3.6 3.2 2.1.8 2.1.5 2.5.5.4-.1 1.2-.5 1.4-1 .2-.5.2-.9.1-1-.1-.1-.2-.1-.4-.2z" />
+    </svg>
+  </a>
+
+  <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15" />
+    </svg>
+  </button>
+
+  <!-- ══════════════ TOASTS ══════════════ -->
+  <div class="wishlist-toast" id="wishlistToast" role="status" aria-live="polite">
+    <span class="toast-heart">&#9829;</span>
+    <span id="wishlistToastMsg">Added to Wishlist!</span>
+  </div>
+  <div class="cart-toast" id="cartToast" role="status" aria-live="polite">
+    <span class="toast-cart-icon">🛒</span>
+    <span id="cartToastMsg">Added to Cart!</span>
+  </div>
+
+  <!-- ══════════════ BOTTOM NAV (Mobile) ══════════════ -->
+  <nav class="bottom-nav" aria-label="Mobile navigation">
+    <a class="bottom-nav-item active" href="#home" aria-label="Home">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+        <polyline points="9 22 9 12 15 12 15 22" />
+      </svg>
+      Home
+    </a>
+    <a class="bottom-nav-item" href="#products" aria-label="Products">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+        <line x1="3" y1="6" x2="21" y2="6" />
+        <path d="M16 10a4 4 0 0 1-8 0" />
+      </svg>
+      Products
+    </a>
+    <button class="bottom-nav-item" id="bottomCartBtn" aria-label="Cart">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="9" cy="21" r="1" />
+        <circle cx="20" cy="21" r="1" />
+        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+      </svg>
+      <span class="bottom-nav-badge" id="bottomCartCount">0</span>
+      Cart
+    </button>
+    <button class="bottom-nav-item" id="bottomWishlistBtn" aria-label="Wishlist">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path
+          d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+      </svg>
+      <span class="bottom-nav-badge" id="bottomWishlistCount">0</span>
+      Wishlist
+    </button>
+  </nav>
+
+  <!-- ══════════════ SCRIPTS ══════════════ -->
+  <!-- 1. Products data — pehle load ho -->
+  <script src="products.js?v=6"></script>
+  <!-- 2. Sab kuch yahan handle hota hai -->
+  <script src="script.js?v=7"></script>
+
+</body>
+
+</html>

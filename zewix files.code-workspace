@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../zewix files"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "zewix files"
+	}
+}

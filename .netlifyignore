@@ -1,0 +1,13 @@
+# Dev / unused files — Netlify par upload nahi honge
+dev-server.mjs
+package.json
+.vscode/
+zewix files.code-workspace
+category-redirect.js
+contact-fix.css
+theme-sync.js
+.vercel/
+web.config
+.htaccess
+vercel.json
+product images/*.pdf
