@@ -623,9 +623,54 @@
   /* ══════════ REVIEWS TICKER ══════════ */
   function initReviewsTicker() { const track = document.getElementById('reviewsTrack'); if (!track) return; track.innerHTML += track.innerHTML; }
 
-  /* ══════════ AUTO SCROLL REMOVED — manual touch scroll only ══════════ */
-  function setupAutoScrollRow(row, rowIndex) { return; }
-  function initAllAutoScrollRows() { return; }
+  /* ══════════ AUTO SCROLL ROWS — Right to Left slow ══════════ */
+  function setupAutoScrollRow(row) {
+    if (!row || row.dataset.autoScrollInit === 'true') return;
+    const cards = row.querySelectorAll('.scroll-card');
+    if (cards.length < 2) return;
+
+    row.dataset.autoScrollInit = 'true';
+    const speed = 0.4; // slow movement
+    let paused = false;
+    let resumeTimer = null;
+
+    function resumeAfter(ms) {
+      clearTimeout(resumeTimer);
+      paused = true;
+      resumeTimer = setTimeout(() => { paused = false; }, ms);
+    }
+
+    // Pause on touch — resume 1.5s after finger lifted
+    row.addEventListener('touchstart', () => {
+      clearTimeout(resumeTimer);
+      paused = true;
+    }, { passive: true });
+
+    row.addEventListener('touchend', () => {
+      resumeAfter(1500);
+    }, { passive: true });
+
+    // Pause on mouse hover (desktop)
+    row.addEventListener('mouseenter', () => { clearTimeout(resumeTimer); paused = true; });
+    row.addEventListener('mouseleave', () => { resumeAfter(500); });
+
+    function tick() {
+      if (!paused) {
+        // Right to left scroll
+        row.scrollLeft += speed;
+        // Jab end pe pahunche to wapas start pe le jao smoothly
+        if (row.scrollLeft >= row.scrollWidth - row.clientWidth - 1) {
+          row.scrollLeft = 0;
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function initAllAutoScrollRows() {
+    document.querySelectorAll('.products-scroll-row').forEach(row => setupAutoScrollRow(row));
+  }
 
   /* ══════════ MOBILE MODAL CSS FIX ══════════ */
   /* ══════════ THEME (default: light / white) ══════════ */
