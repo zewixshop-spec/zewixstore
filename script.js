@@ -623,14 +623,24 @@
   /* ══════════ REVIEWS TICKER ══════════ */
   function initReviewsTicker() { const track = document.getElementById('reviewsTrack'); if (!track) return; track.innerHTML += track.innerHTML; }
 
-  /* ══════════ AUTO SCROLL — CSS animation based ══════════ */
+  /* ══════════ AUTO SCROLL — CSS animation based like reviews ══════════ */
   function setupAutoScrollRow(row) {
     if (!row || row.dataset.autoScrollInit === 'true') return;
     const cards = row.querySelectorAll('.scroll-card');
     if (cards.length < 2) return;
     row.dataset.autoScrollInit = 'true';
-    // Content double karo taake seamless loop ho
-    row.innerHTML += row.innerHTML;
+
+    // Inner track div banao
+    const inner = document.createElement('div');
+    inner.className = 'products-scroll-inner';
+
+    // Saare cards inner mein move karo
+    cards.forEach(card => inner.appendChild(card));
+
+    // Content double karo seamless loop ke liye
+    inner.innerHTML += inner.innerHTML;
+
+    row.appendChild(inner);
   }
 
   function initAllAutoScrollRows() {

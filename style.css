@@ -2728,16 +2728,19 @@ body.light-theme .img-loading {
 
 /* ── Horizontal Scroll Row ── */
 .products-scroll-row {
-  display: flex;
-  gap: 1rem;
   overflow: hidden;
   padding: 1rem 0 1.5rem;
   width: 100%;
-  animation: cards-scroll 40s linear infinite;
-  width: max-content;
 }
 
-.products-scroll-row:hover {
+.products-scroll-inner {
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+  animation: cards-scroll 40s linear infinite;
+}
+
+.products-scroll-row:hover .products-scroll-inner {
   animation-play-state: paused;
 }
 
