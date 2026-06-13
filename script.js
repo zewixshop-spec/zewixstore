@@ -124,7 +124,6 @@
       section.appendChild(row);
       container.appendChild(section);
     });
-    initAllAutoScrollRows();
   }
 
   /* ══════════ VIEW ALL MODAL ══════════ */
@@ -141,8 +140,6 @@
     modal.classList.add('open');
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
-    // Init auto-scroll for any scroll-rows inside viewAll grid
-    grid.querySelectorAll('.products-scroll-row').forEach((row, i) => setupAutoScrollRow(row, i));
   }
   function closeViewAllModal() {
     const modal = document.getElementById('viewAllModal');
@@ -165,7 +162,6 @@
     if (!products.length) { if (empty) empty.style.display = ''; return; }
     if (empty) empty.style.display = 'none';
     products.forEach(p => row.appendChild(createScrollCard(p)));
-    initAllAutoScrollRows();
   }
 
   /* ══════════ TOP SELLING ══════════ */
@@ -177,7 +173,6 @@
     if (!products.length) { if (empty) empty.style.display = ''; return; }
     if (empty) empty.style.display = 'none';
     products.forEach(p => row.appendChild(createScrollCard(p)));
-    initAllAutoScrollRows();
   }
 
   /* ══════════ MEGA SALE ══════════ */
@@ -196,7 +191,7 @@
       card.dataset.image       = p.image;
       card.dataset.description = p.description;
       card.dataset.features    = Array.isArray(p.features) ? p.features.join(',') : (p.features || '');
-      card.dataset.category    = p.category || ''; // FIX: missing category on sale cards
+      card.dataset.category    = p.category || '';
       card.innerHTML = `
         <img src="${p.image}" alt="${p.name}" loading="lazy"/>
         <div class="sale-card-info">
@@ -225,19 +220,14 @@
 
   /* ══════════ CLOSE ALL MODALS ══════════ */
   function closeAllModals() {
-    // Close product modal
     const pm = document.getElementById('productModal');
     if (pm) { pm.classList.remove('open'); pm.setAttribute('aria-hidden','true'); pm.style.zIndex = ''; }
-    // Close viewAll modal
     const va = document.getElementById('viewAllModal');
     if (va) { va.classList.remove('open'); va.setAttribute('aria-hidden','true'); }
-    // Close cart modal
     const cm = document.getElementById('cartModal');
     if (cm) { cm.classList.remove('open'); cm.setAttribute('aria-hidden','true'); }
-    // Close wishlist modal
     const wm = document.getElementById('wishlistModal');
     if (wm) { wm.classList.remove('open'); wm.setAttribute('aria-hidden','true'); }
-    // Close checkout modal
     const co = document.getElementById('checkoutModal');
     if (co) { co.classList.remove('open'); co.setAttribute('aria-hidden','true'); }
     currentProduct = null;
@@ -247,7 +237,6 @@
 
   /* ══════════ PRODUCT MODAL ══════════ */
   function openModal(p) {
-    // Close all other modals first
     closeAllModals();
     currentProduct = p;
     const modal = document.getElementById('productModal');
@@ -623,36 +612,10 @@
   /* ══════════ REVIEWS TICKER ══════════ */
   function initReviewsTicker() { const track = document.getElementById('reviewsTrack'); if (!track) return; track.innerHTML += track.innerHTML; }
 
-  /* ══════════ AUTO SCROLL — CSS animation based like reviews ══════════ */
-  function setupAutoScrollRow(row) {
-    if (!row || row.dataset.autoScrollInit === 'true') return;
-    const cards = row.querySelectorAll('.scroll-card');
-    if (cards.length < 2) return;
-    row.dataset.autoScrollInit = 'true';
-
-    // Inner track div banao
-    const inner = document.createElement('div');
-    inner.className = 'products-scroll-inner';
-
-    // Saare cards inner mein move karo
-    cards.forEach(card => inner.appendChild(card));
-
-    // Content double karo seamless loop ke liye
-    inner.innerHTML += inner.innerHTML;
-
-    row.appendChild(inner);
-  }
-
-  function initAllAutoScrollRows() {
-    document.querySelectorAll('.products-scroll-row').forEach(row => setupAutoScrollRow(row));
-  }
-
-  /* ══════════ MOBILE MODAL CSS FIX ══════════ */
-  /* ══════════ THEME (default: light / white) ══════════ */
+  /* ══════════ THEME ══════════ */
   function initTheme() {
     try {
       const saved = localStorage.getItem('zewix_theme');
-      // Default is always light — only go dark if user explicitly chose it
       if (saved === 'dark') {
         document.body.classList.remove('light-theme');
         document.documentElement.classList.remove('light-theme');
@@ -711,7 +674,7 @@
     btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   }
 
-  /* ══════════ SEARCH (grid restore on clear only) ══════════ */
+  /* ══════════ SEARCH ══════════ */
   function initSearch() {
     const input = document.getElementById('navSearch');
     if (!input) return;
@@ -782,7 +745,7 @@
     if (list) {
       allReviews.forEach(r => {
         const stars = '★'.repeat(r.stars) + '☆'.repeat(5 - r.stars);
-        const div = document.createElement('div'); div.className = 'reviews-modal-item'; // FIX: was 'review-card', needs 'reviews-modal-item' for CSS styling
+        const div = document.createElement('div'); div.className = 'reviews-modal-item';
         div.innerHTML = `<div class="review-avatar">${r.initials}</div><div class="review-body"><div class="review-header"><span class="review-name">${r.name}</span><span class="review-stars">${stars}</span></div><p class="review-text">${r.text}</p><span class="review-date">${r.date}</span></div>`;
         list.appendChild(div);
       });
@@ -797,41 +760,40 @@
     });
   }
 
-  /* ══════════ VIEW ALL MODAL INJECT ══════════ */
+  /* ══════════ VIEW ALL MODAL ══════════ */
   function injectViewAllModal() {
-      // Ensure modal exists and attach listeners (works for both static markup and injected)
-      let modal = document.getElementById('viewAllModal');
-      if (!modal) {
-        modal = document.createElement('div');
-        modal.className = 'modal'; modal.id = 'viewAllModal';
-        modal.setAttribute('role','dialog'); modal.setAttribute('aria-modal','true'); modal.setAttribute('aria-hidden','true');
-        modal.innerHTML = `
-        <div class="modal-backdrop" id="viewAllModalBackdrop"></div>
-        <div class="view-all-modal-content">
-          <div class="cart-header">
-            <h3 id="viewAllTitle">Products</h3>
-            <button class="modal-close" id="closeViewAllModal" aria-label="Close">&#215;</button>
-          </div>
-          <div class="view-all-grid" id="viewAllGrid"></div>
-        </div>`;
-        document.body.appendChild(modal);
-      }
-
-      const closeBtn = document.getElementById('closeViewAllModal');
-      if (closeBtn && !closeBtn.dataset.vListener) {
-        closeBtn.addEventListener('click', closeViewAllModal);
-        closeBtn.dataset.vListener = '1';
-      }
-
-      const backdrop = document.getElementById('viewAllModalBackdrop');
-      if (backdrop && !backdrop.dataset.vListener) {
-        backdrop.addEventListener('click', () => {
-          const productModal = document.getElementById('productModal');
-          if (!productModal || !productModal.classList.contains('open')) closeViewAllModal();
-        });
-        backdrop.dataset.vListener = '1';
-      }
+    let modal = document.getElementById('viewAllModal');
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.className = 'modal'; modal.id = 'viewAllModal';
+      modal.setAttribute('role','dialog'); modal.setAttribute('aria-modal','true'); modal.setAttribute('aria-hidden','true');
+      modal.innerHTML = `
+      <div class="modal-backdrop" id="viewAllModalBackdrop"></div>
+      <div class="view-all-modal-content">
+        <div class="cart-header">
+          <h3 id="viewAllTitle">Products</h3>
+          <button class="modal-close" id="closeViewAllModal" aria-label="Close">&#215;</button>
+        </div>
+        <div class="view-all-grid" id="viewAllGrid"></div>
+      </div>`;
+      document.body.appendChild(modal);
     }
+
+    const closeBtn = document.getElementById('closeViewAllModal');
+    if (closeBtn && !closeBtn.dataset.vListener) {
+      closeBtn.addEventListener('click', closeViewAllModal);
+      closeBtn.dataset.vListener = '1';
+    }
+
+    const backdrop = document.getElementById('viewAllModalBackdrop');
+    if (backdrop && !backdrop.dataset.vListener) {
+      backdrop.addEventListener('click', () => {
+        const productModal = document.getElementById('productModal');
+        if (!productModal || !productModal.classList.contains('open')) closeViewAllModal();
+      });
+      backdrop.dataset.vListener = '1';
+    }
+  }
 
   /* ══════════ EVENTS ══════════ */
   function initEvents() {
@@ -878,7 +840,6 @@
         if (!modal || !grid) return; title.textContent = 'Most Popular'; grid.innerHTML = '';
         ALL_PRODUCTS.filter(p => p.popular).forEach(p => grid.appendChild(createScrollCard(p)));
         modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); document.body.style.overflow = 'hidden';
-        grid.querySelectorAll('.products-scroll-row').forEach((row, i) => setupAutoScrollRow(row, i));
         return;
       }
       if (e.target.id === 'topSellingViewAllBtn') {
@@ -887,7 +848,6 @@
         if (!modal || !grid) return; title.textContent = 'Top Selling'; grid.innerHTML = '';
         ALL_PRODUCTS.filter(p => p.topSelling).forEach(p => grid.appendChild(createScrollCard(p)));
         modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); document.body.style.overflow = 'hidden';
-        grid.querySelectorAll('.products-scroll-row').forEach((row, i) => setupAutoScrollRow(row, i));
         return;
       }
 
@@ -896,7 +856,6 @@
         const card = buyBtn.closest('[data-name]');
         if (card) {
           const full = findProductByName(card.dataset.name) || getCardData(card);
-          // Direct to checkout — skip product modal
           openCheckout('single', [{
             name: full.name,
             price: full.salePrice || full.price,
@@ -957,7 +916,6 @@
     });
   }
 
-  // FIX: Expose openModal globally so search dropdown (outside IIFE) can call it
   window.openModal = openModal;
 
   /* ══════════ INIT ══════════ */
