@@ -758,9 +758,11 @@ h2 {
 
 /* ─── Reviews Section ────────────────────────────────────────── */
 .reviews-section {
-  background: #061830;
+  
+  round: #061830;
   overflow: hidden;
 }
+
 .reviews-top {
   display: flex;
   align-items: center;
@@ -2728,14 +2730,21 @@ body.light-theme .img-loading {
 .products-scroll-row {
   display: flex;
   gap: 1rem;
-  overflow-x: auto;
-  overflow-y: visible;
+  overflow: hidden;
   padding: 1rem 0 1.5rem;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+  width: 100%;
+  animation: cards-scroll 40s linear infinite;
+  width: max-content;
 }
-.products-scroll-row::-webkit-scrollbar { display: none; }
+
+.products-scroll-row:hover {
+  animation-play-state: paused;
+}
+
+@keyframes cards-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
 
 /* ── Scroll Card (compact size) ── */
 .scroll-card {
@@ -2889,7 +2898,7 @@ body.light-theme .img-loading {
   .products-scroll-row {
     overscroll-behavior-x: contain;
     overscroll-behavior-y: auto;
-    touch-action: pan-x pan-y;
+    touch-action: pan-y;
     padding-left: 4px;
     padding-right: 4px;
   }
@@ -2913,7 +2922,7 @@ body.light-theme .img-loading {
 .products-scroll-row.auto-scroll-active {
   overflow-x: auto;
   scroll-snap-type: x proximity;
-  touch-action: pan-x pan-y pinch-zoom;
+  touch-action: pan-y pinch-zoom;
   -webkit-mask-image: linear-gradient(to right, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
   mask-image: linear-gradient(to right, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
 }
