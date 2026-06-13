@@ -657,10 +657,27 @@
 
     row.addEventListener('mouseenter', () => { paused = true; });
     row.addEventListener('mouseleave', () => { paused = false; resumeAt = 0; });
-    row.addEventListener('touchstart', () => pause(4000), { passive: true });
-    row.addEventListener('touchmove', () => pause(4000), { passive: true });
+
+    // Pause auto-scroll on touch, resume after touch ends
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let isTouching = false;
+    row.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      isTouching = true;
+      paused = true;
+      resumeAt = 0;
+    }, { passive: true });
+    row.addEventListener('touchmove', (e) => {
+      paused = true;
+      resumeAt = 0;
+    }, { passive: true });
+    row.addEventListener('touchend', () => {
+      isTouching = false;
+      pause(2000);
+    }, { passive: true });
     row.addEventListener('wheel', () => pause(4000), { passive: true });
-    row.addEventListener('pointerdown', () => pause(4000));
 
     // Watchdog: detect if the row stopped moving and reset
     let lastScroll = row.scrollLeft || 0;
@@ -714,15 +731,22 @@
   /* ══════════ THEME (default: light / white) ══════════ */
   function initTheme() {
     try {
-      if (localStorage.getItem('zewix_theme') === 'dark') {
+      const saved = localStorage.getItem('zewix_theme');
+      // Default is always light — only go dark if user explicitly chose it
+      if (saved === 'dark') {
         document.body.classList.remove('light-theme');
+        document.documentElement.classList.remove('light-theme');
       } else {
         document.body.classList.add('light-theme');
+        document.documentElement.classList.add('light-theme');
       }
-    } catch (e) {}
+    } catch (e) {
+      document.body.classList.add('light-theme');
+    }
     const btn = document.getElementById('themeToggle');
     if (btn) btn.addEventListener('click', () => {
       document.body.classList.toggle('light-theme');
+      document.documentElement.classList.toggle('light-theme');
       try {
         localStorage.setItem('zewix_theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
       } catch (e) {}
